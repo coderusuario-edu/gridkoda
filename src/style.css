@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,700;1,200;1,300;1,400;1,700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+.navbar{
+    font-weight: 700;
+}
+.bg-gk-gradient{
+    background: linear-gradient(270deg, #efd5ff 0%, #515ada 100%);
+}
