@@ -13,6 +13,9 @@
 .bg-gk-gradient{
     background: linear-gradient(270deg, #efd5ff 0%, #515ada 100%);
 }
+.bg-bk{
+    background-color: rgb(81, 90, 218);
+}
 .carty{
     position: fixed;
     bottom: 50px;
