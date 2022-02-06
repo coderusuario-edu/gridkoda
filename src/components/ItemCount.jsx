@@ -19,6 +19,12 @@ const ItemCount = ({ stock, initial }) => {
         }
 
     }
+
+    const onAdd = () => {
+        if (cantidad < stock) {
+            alert(`Yay, agregaste al carrito ${cantidad} items`);
+        }
+    }
     return (
         <>
             <div className="btn-group" role="group" >
@@ -27,12 +33,17 @@ const ItemCount = ({ stock, initial }) => {
                 <button type="button" className={cantidad === stock ? 'btn btn-bk disabled' : 'btn btn-bk'} onClick={() => { addItem() }}>+</button>
             </div>
             {
-            queda > 0 ?
-                (<small className="small">Quedan {queda} productos</small>) 
-                :
-                (<small className="small">Sin stock</small>) 
+                queda > 0 ?
+                    (<>
+                        <small className="small">Quedan {queda} productos</small>
+                        <button className="btn btn-outline-bk mt-1" onClick={() => { onAdd() }} > <small> Agregar al carrito</small></button>
+                    </>)
+                    :
+                    (<>
+                        <small className="small">Sin stock</small>
+                        <button className="btn btn-outline-bk mt-1" disabled > <small> Agregar al carrito</small></button>
+                    </>)
             }
-            <button className="btn btn-outline-bk mt-1"> <small> Agregar al carrito</small></button>
         </>
     );
 }
