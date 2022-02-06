@@ -13,3 +13,55 @@
 .bg-gk-gradient{
     background: linear-gradient(270deg, #efd5ff 0%, #515ada 100%);
 }
+.carty{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color:rgba(81, 90, 218, 0.7);
+    border-radius: 16px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    transition: all 0.2s ease-in;
+    color: #fff;
+}
+.fontAwesomeCart svg{
+    font-size: 30px;
+}
+
+.carty:hover{
+    animation: brr 1s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+@keyframes brr{
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.superUp{
+    position: absolute;
+    border: 1px solid rgb(186, 192, 224);
+    background-color: rgba(186, 192, 224, 0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -10px;
+    right: -10px;
+}
