@@ -1,34 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,700;1,200;1,300;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,700;1,200;1,300;1,400;1,700&display=swap");
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
-.navbar{
+.navbar {
     font-weight: 700;
 }
-.bg-gk-gradient{
+.bg-gk-gradient {
     background: linear-gradient(270deg, #efd5ff 0%, #515ada 100%);
 }
-.bg-bk{
+.bg-bk {
     background-color: rgb(81, 90, 218);
 }
-.card{
+
+.card {
     box-shadow: 0px 10px 20px rgba(81, 90, 218, 0.3);
     transition: all 0.2s cubic-bezier(0.12, -0.21, 0.84, 1.27);
 }
-
-.card:hover{
+.card-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.card img {
+    height: 300px;
+    width: fit-content;
+    object-fit: cover;
+}
+.card:hover {
     transform: scale(1.05);
 }
-.carty{
+.carty {
     position: fixed;
     bottom: 50px;
     right: 50px;
-    background-color:rgba(81, 90, 218, 0.702);
+    background-color: rgba(81, 90, 218, 0.702);
     border-radius: 16px;
     width: 70px;
     height: 70px;
@@ -39,33 +50,54 @@
     transition: all 0.2s ease-in;
     color: #fff;
     box-shadow: 0px 10px 20px rgba(81, 90, 218, 0.3);
-
 }
-.fontAwesomeCart svg{
+.fontAwesomeCart svg {
     font-size: 30px;
 }
 
-.carty:hover{
-    animation: brr 1s cubic-bezier(.36,.07,.19,.97) both;
+.carty:hover {
+    animation: brr 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
 }
 
-@keyframes brr{
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+@keyframes brr {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
 }
 
-.superUp{
+.superUp {
     position: absolute;
     border: 1px solid rgb(186, 192, 224);
     background-color: rgba(186, 192, 224, 0.7);
@@ -79,24 +111,24 @@
     right: -10px;
 }
 
-.btn-bk{
+.btn-bk {
     color: #fff;
-    border: 1px solid rgba(81, 90, 218,0.7);
-    background-color:rgba(81, 90, 218,0.7);
+    border: 1px solid rgba(81, 90, 218, 0.7);
+    background-color: rgba(81, 90, 218, 0.7);
     transition: all 0.5s ease;
 }
-.btn-bk:hover{
+.btn-bk:hover {
     color: rgb(81, 90, 218);
-    background-color: rgba(81, 90, 218,0.3);
+    background-color: rgba(81, 90, 218, 0.3);
 }
 
-.btn-outline-bk{
-    border: 1px solid rgba(81, 90, 218,0.7);
-    color:rgb(81, 90, 218);
+.btn-outline-bk {
+    border: 1px solid rgba(81, 90, 218, 0.7);
+    color: rgb(81, 90, 218);
     transition: all 0.5s ease;
 }
-.btn-outline-bk:hover{
-    color:#fff;
-    background-color:rgba(81, 90, 218,0.7);
+.btn-outline-bk:hover {
+    color: #fff;
+    background-color: rgba(81, 90, 218, 0.7);
     border-color: rgb(81, 90, 218, 0.7);
 }
