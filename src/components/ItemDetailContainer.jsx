@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 
 const productos = [
@@ -69,10 +70,11 @@ const getItem = (item) => {
     });
 };
 
-const ItemDetailContainer = ({ itemPedido }) => {
+const ItemDetailContainer = () => {
     const [detalle, setDetalle] = useState(null);
+    const itemPedido = useParams().itemId;
     useEffect(() => {
-        let product = getItem(itemPedido);
+        let product = getItem(parseInt(itemPedido));
         product.then((resultado) => {
             setDetalle(resultado);
         });
