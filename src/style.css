@@ -32,9 +32,10 @@
     width: fit-content;
     object-fit: cover;
 }
-.card:hover {
+.card.hov:hover {
     transform: scale(1.05);
 }
+
 .carty {
     position: fixed;
     bottom: 50px;
