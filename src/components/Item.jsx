@@ -1,10 +1,10 @@
 import React from "react";
-import ItemCount from "./ItemCount";
+import { Link } from "react-router-dom";
 
-const Item = ({ nombre, descripcion, precio, imagen }) => {
+const Item = ({ id, nombre, descripcion, precio, imagen }) => {
     return (
         <div className="col p-3">
-            <div className="card h-100 mx-3">
+            <div className="card h-100 mx-3 hov">
                 <div className="card-img">
                     <img
                         className="card-img-top p-3"
@@ -16,7 +16,12 @@ const Item = ({ nombre, descripcion, precio, imagen }) => {
                     <h4 className="card-title">{nombre}</h4>
                     <p className="card-text">${precio}</p>
                 </div>
-                <ItemCount stock={5} initial={1} />
+                <Link
+                    to={`/item/${id}`}
+                    className="btn btn-outline-bk mx-3 mb-3"
+                >
+                    Ver más
+                </Link>
             </div>
         </div>
     );
