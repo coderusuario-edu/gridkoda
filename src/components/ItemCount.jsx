@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ItemCount = ({ stock, initial }) => {
+const ItemCount = ({ stock, initial, onAdd }) => {
+    const [finalizar, setFinalizar] = useState(false);
     const [cantidad, setCantidad] = useState(initial);
     const [queda, setQueda] = useState(stock - 1);
 
@@ -18,11 +20,6 @@ const ItemCount = ({ stock, initial }) => {
         }
     };
 
-    const onAdd = () => {
-        if (cantidad < stock) {
-            alert(`Yay, agregaste al carrito ${cantidad} items`);
-        }
-    };
     return (
         <>
             <div className="btn-group" role="group">
@@ -51,26 +48,26 @@ const ItemCount = ({ stock, initial }) => {
                 </button>
             </div>
             {queda > 0 ? (
-                <>
-                    <small className="small">Quedan {queda} productos</small>
-                    <button
-                        className="btn btn-outline-bk mt-1"
-                        onClick={() => {
-                            onAdd();
-                        }}
-                    >
-                        {" "}
-                        <small> Agregar al carrito</small>
-                    </button>
-                </>
+                <small className="small">Quedan {queda} productos</small>
             ) : (
-                <>
-                    <small className="small">Sin stock</small>
-                    <button className="btn btn-outline-bk mt-1" disabled>
-                        {" "}
-                        <small> Agregar al carrito</small>
+                <small className="small">Sin stock</small>
+            )}
+            {finalizar ? (
+                <Link to="/cart">
+                    <button className="btn btn-outline-bk mt-1">
+                        <small> Ir al carrito</small>
                     </button>
-                </>
+                </Link>
+            ) : (
+                <button
+                    className="btn btn-outline-bk mt-1"
+                    onClick={() => {
+                        setFinalizar(true);
+                        onAdd(cantidad);
+                    }}
+                >
+                    <small> Agregar al carrito</small>
+                </button>
             )}
         </>
     );

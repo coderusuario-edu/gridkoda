@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ producto }) => {
+    const onAdd = (cantidad) => {
+        alert(`Yay, agregaste al carrito ${cantidad} items`);
+    };
     return (
         <div className="container">
             <div className="row mt-3">
@@ -34,7 +37,11 @@ const ItemDetail = ({ producto }) => {
                                 </div>
                                 <div className="row d-flex justify-content-center">
                                     <div className="col-md-6 d-flex flex-column">
-                                        <ItemCount stock={5} initial={1} />
+                                        <ItemCount
+                                            stock={5}
+                                            initial={1}
+                                            onAdd={onAdd}
+                                        />
                                     </div>
                                 </div>
                             </div>
