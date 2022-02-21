@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ producto }) => {
-    const onAdd = (cantidad) => {
-        alert(`Yay, agregaste al carrito ${cantidad} items`);
-    };
+    const onAdd = (cantidad) => {};
     return (
         <div className="container">
             <div className="row mt-3">
