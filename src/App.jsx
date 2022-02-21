@@ -4,6 +4,7 @@ import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Cart from "./components/Cart";
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                         path="/item/:itemId"
                         element={<ItemDetailContainer />}
                     />
+                    <Route path="/cart" element={<Cart />} />
                 </Routes>
                 <CartWidget />
             </div>
