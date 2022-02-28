@@ -1,8 +1,11 @@
-import React, { useState } from "react";
 import ItemCount from "./ItemCount";
+import useCartContext from "../context/CartContext";
 
 const ItemDetail = ({ producto }) => {
-    const onAdd = (cantidad) => {};
+    const { addItem } = useCartContext();
+    const onAdd = (cantidad) => {
+        addItem(producto, cantidad);
+    };
     return (
         <div className="container">
             <div className="row mt-3">
@@ -15,7 +18,6 @@ const ItemDetail = ({ producto }) => {
                         </div>
                         <div className="card-body row">
                             <div className="col-md-6">
-                                {" "}
                                 <div className="card-img">
                                     <img
                                         className="card-img-top p-3"
@@ -36,6 +38,7 @@ const ItemDetail = ({ producto }) => {
                                 <div className="row d-flex justify-content-center">
                                     <div className="col-md-6 d-flex flex-column">
                                         <ItemCount
+                                            id={producto.id}
                                             stock={5}
                                             initial={1}
                                             onAdd={onAdd}
