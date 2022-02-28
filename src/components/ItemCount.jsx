@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useCartContext from "../context/CartContext";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
-    const [finalizar, setFinalizar] = useState(false);
+const ItemCount = ({ id, stock, initial, onAdd }) => {
     const [cantidad, setCantidad] = useState(initial);
     const [queda, setQueda] = useState(stock - 1);
 
+    const { isInCart } = useCartContext();
     const addItem = () => {
         if (cantidad < stock) {
             setCantidad(cantidad + 1);
@@ -22,7 +23,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
     return (
         <>
-            {finalizar ? (
+            {isInCart(id) ? (
                 <Link to="/cart">
                     <div className="d-grid">
                         <button className="btn btn-outline-bk mt-1">
@@ -67,7 +68,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                     <button
                         className="btn btn-outline-bk mt-1"
                         onClick={() => {
-                            setFinalizar(true);
                             onAdd(cantidad);
                         }}
                     >
