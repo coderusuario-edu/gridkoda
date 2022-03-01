@@ -63,7 +63,7 @@ const ItemCount = ({ id, stock, initial, onAdd }) => {
                             Quedan {queda} productos
                         </small>
                     ) : (
-                        <small className="small">Sin stock</small>
+                        <small className="small">Seleccionaste todos</small>
                     )}
                     <button
                         className="btn btn-outline-bk mt-1"
