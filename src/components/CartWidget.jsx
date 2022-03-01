@@ -6,15 +6,24 @@ import { Link } from "react-router-dom";
 
 const CartWidget = () => {
     const { cart } = useCartContext();
+    let cartNumber = 0;
+    cart.map((item) => {
+        console.log(item.quantity);
+        return (cartNumber += item.quantity);
+    });
     return (
-        <Link to="/cart">
-            <div className="carty">
-                <span className="fontAwesomeCart">
-                    <FontAwesomeIcon icon={faShoppingCart} />
-                </span>
-                <span className="superUp">{cart.length}</span>
-            </div>
-        </Link>
+        <>
+            {cart.length !== 0 && (
+                <Link to="/cart">
+                    <div className="carty">
+                        <span className="fontAwesomeCart">
+                            <FontAwesomeIcon icon={faShoppingCart} />
+                        </span>
+                        <span className="superUp">{cartNumber}</span>
+                    </div>
+                </Link>
+            )}
+        </>
     );
 };
 
