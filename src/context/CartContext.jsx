@@ -7,8 +7,6 @@ const useCartContext = () => {
 };
 
 export const CartContextComponent = ({ children }) => {
-    let nombre = "Grid & Koda";
-
     const [cart, setCart] = useState([]);
     //Esta función hay que verla, para poder agregar Items en vez de bloquear el contador. La idea es buscar el objeto dentro del array y cambiar el valor cantidad
     const addItem = (item, quantity) => {
@@ -41,11 +39,11 @@ export const CartContextComponent = ({ children }) => {
     return (
         <CartContext.Provider
             value={{
-                nombre,
                 isInCart,
                 getItemInCart,
                 addItem,
                 removeItem,
+                clear,
                 cart,
             }}
         >
