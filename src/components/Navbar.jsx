@@ -25,18 +25,34 @@ function Navbar() {
                         <ul className="navbar-nav">
                             <li className="nav-item">
                                 <NavLink
-                                    to="/category/mas-comprados"
+                                    to="/category/pequeño"
                                     className="nav-link"
                                 >
-                                    Más comprados
+                                    Pequeños
                                 </NavLink>
                             </li>
+                            <li className="nav-item">
+                                <NavLink
+                                    to="/category/mediano"
+                                    className="nav-link"
+                                >
+                                    Medianos
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink
+                                    to="/category/grande"
+                                    className="nav-link"
+                                >
+                                    Grandes
+                                </NavLink>
+                            </li>{" "}
                             <li className="nav-item">
                                 <NavLink
                                     to="/category/sale"
                                     className="nav-link"
                                 >
-                                    Promociones
+                                    Promoción
                                 </NavLink>
                             </li>
                         </ul>
