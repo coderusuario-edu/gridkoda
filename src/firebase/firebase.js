@@ -8,7 +8,10 @@ import {
     query,
     where,
     getFirestore,
+    CollectionReference,
+    addDoc,
 } from "firebase/firestore";
+import { Navigate, useNavigate } from "react-router-dom";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -70,3 +73,13 @@ export async function getProductCategory(categoryId) {
         console.log(error);
     }
 }
+
+export const generarOrder = async (orderData) => {
+    try {
+        const colec = collection(db, "orden");
+        const order = await addDoc(colec, orderData);
+        return order.id;
+    } catch (error) {
+        console.error("Error en la escritura de datos");
+    }
+};
