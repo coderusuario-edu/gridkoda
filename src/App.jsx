@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import { CartContextComponent } from "./context/CartContext";
+import Yay from "./components/Yay";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                             element={<ItemDetailContainer />}
                         />
                         <Route path="/cart" element={<Cart />} />
+                        <Route path="/yay/:id" element={<Yay />} />
                     </Routes>
                     <CartWidget />
                 </div>
