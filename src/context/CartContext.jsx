@@ -35,6 +35,21 @@ export const CartContextComponent = ({ children }) => {
     const clear = () => {
         setCart([]);
     };
+    function itemsCarrito() {
+        let cartNumber = 0;
+        cart.forEach((item) => {
+            cartNumber += item.quantity;
+        });
+        return cartNumber;
+    }
+
+    function totalCarrito() {
+        let totalPrecio = 0;
+        cart.forEach((item) => {
+            totalPrecio += item.price * item.quantity;
+        });
+        return totalPrecio;
+    }
 
     return (
         <CartContext.Provider
@@ -44,6 +59,8 @@ export const CartContextComponent = ({ children }) => {
                 addItem,
                 removeItem,
                 clear,
+                itemsCarrito,
+                totalCarrito,
                 cart,
             }}
         >
