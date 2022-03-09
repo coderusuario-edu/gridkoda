@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useCartContext from "../context/CartContext";
+import CartForm from "./CartForm";
+import CartItem from "./CartItem";
 
 const Cart = () => {
-    const { cart, removeItem, clear } = useCartContext();
+    const [finalizar, setFinalizar] = useState(false);
+    const { cart, clear, totalCarrito } = useCartContext();
     let carritoVacio = cart.length === 0;
-    let totalPrecio = 0;
-    cart.map((item) => {
-        totalPrecio += item.price * item.quantity;
-        return totalPrecio;
-    });
 
     return (
         <>
@@ -32,7 +30,6 @@ const Cart = () => {
                     <div className="row p-3">
                         <div className="col card">
                             <div className="card-body d-flex justify-content-between">
-                                <strong>ID-producto</strong>
                                 <strong>Producto</strong>
                                 <strong>Cantidad</strong>
                                 <strong>Precio</strong>
@@ -40,48 +37,38 @@ const Cart = () => {
                             </div>
                         </div>
                     </div>
-                    {cart.map((item, key) => (
-                        <div className="row p-3" key={key}>
-                            <div className="col card">
-                                <div className="card-body d-flex justify-content-between">
-                                    <p>{item.id}</p>
-                                    <p>{item.title}</p>
-                                    <p>{item.quantity}</p>
-                                    <p>{item.price}</p>
-                                    <button
-                                        onClick={() => {
-                                            removeItem(item.id);
-                                        }}
-                                        className="btn btn-danger"
-                                    >
-                                        {" "}
-                                        X{" "}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    {cart.map((item) => (
+                        <CartItem key={item.id} item={item} />
                     ))}
                     <div className="row p-3">
                         <div className="col card">
                             <div className="card-body d-flex justify-content-between">
                                 <strong>Total</strong>
-                                <strong>{totalPrecio} </strong>
+                                <strong> ${totalCarrito()} </strong>
                             </div>
                         </div>
                     </div>{" "}
                     <div className="row p-3">
-                        <div className="col  d-flex justify-content-between">
-                            <button
-                                className="btn btn-outline-danger"
-                                onClick={clear}
-                            >
-                                Vaciar Carrito
-                            </button>
-                            <button className="btn btn-success">
-                                Terminar Compra
-                            </button>
-                        </div>
+                        {!finalizar && (
+                            <div className="col d-flex justify-content-between">
+                                <button
+                                    className="btn btn-outline-danger"
+                                    onClick={clear}
+                                >
+                                    Vaciar Carrito
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setFinalizar(true);
+                                    }}
+                                    className="btn btn-success"
+                                >
+                                    Comprar
+                                </button>
+                            </div>
+                        )}
                     </div>
+                    <>{finalizar && <CartForm />}</>
                 </div>
             )}
         </>
