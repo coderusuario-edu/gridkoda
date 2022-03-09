@@ -5,12 +5,8 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const CartWidget = () => {
-    const { cart } = useCartContext();
-    let cartNumber = 0;
-    cart.map((item) => {
-        console.log(item.quantity);
-        return (cartNumber += item.quantity);
-    });
+    const { cart, itemsCarrito } = useCartContext();
+
     return (
         <>
             {cart.length !== 0 && (
@@ -19,7 +15,7 @@ const CartWidget = () => {
                         <span className="fontAwesomeCart">
                             <FontAwesomeIcon icon={faShoppingCart} />
                         </span>
-                        <span className="superUp">{cartNumber}</span>
+                        <span className="superUp">{itemsCarrito()}</span>
                     </div>
                 </Link>
             )}
