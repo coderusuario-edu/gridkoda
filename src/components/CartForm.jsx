@@ -40,7 +40,6 @@ const CartForm = () => {
                 price: item.price,
             });
         });
-        console.table(itemsCarrito);
         const orderData = {
             buyer,
             items: itemsCarrito,
@@ -48,7 +47,7 @@ const CartForm = () => {
         };
         let orderId = generarOrder(orderData);
         orderId.then((resolve) => {
-            console.log(resolve);
+            clear();
             navigate(`/yay/${resolve}`);
         });
     };
