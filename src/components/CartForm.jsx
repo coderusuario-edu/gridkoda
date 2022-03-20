@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useCartContext from "../context/CartContext";
-import { generarOrder } from "../firebase/firebase";
+import useFireStore from "../hooks/useFireStore";
+import FormInput from "./FormInput";
 
 const CartForm = () => {
     const [buyer, setBuyer] = useState({
@@ -10,7 +11,15 @@ const CartForm = () => {
         email: "",
     });
 
-    let navigate = useNavigate();
+    const [error, setError] = useState({
+        name: null,
+        phone: null,
+        email: null,
+    });
+
+    const navigate = useNavigate();
+
+    const { generarOrder } = useFireStore();
 
     const { clear, cart, totalCarrito } = useCartContext();
 
@@ -21,6 +30,12 @@ const CartForm = () => {
             email: "",
         });
     };
+
+    const FormLabels = [
+        { k: "name", name: "Nombre y apellido", type: "text" },
+        { k: "phone", name: "Teléfono", type: "number" },
+        { k: "email", name: "Email", type: "email" },
+    ];
 
     const handleInput = (evt) => {
         const campo = evt.target.name;
@@ -52,6 +67,16 @@ const CartForm = () => {
         });
     };
 
+    const handleBlur = (evt) => {
+        let value = evt.target.value;
+        let nameObj = evt.target.name;
+        if (value === "") {
+            setError({ ...error, [nameObj]: "Este campo es obligatorio" });
+            return;
+        }
+        setError({});
+    };
+
     return (
         <div className="card mx-1">
             <div className="card-header">
@@ -65,45 +90,18 @@ const CartForm = () => {
                     noValidate
                     onSubmit={handleSubmit}
                 >
-                    <div className="form-floating mb-3">
-                        <input
-                            name="name"
-                            onChange={handleInput}
-                            value={buyer.name}
-                            type="text"
-                            className="form-control"
-                            id="floatingInput"
-                            placeholder="name@example.com"
-                            required
+                    {FormLabels.map((label, idx) => (
+                        <FormInput
+                            key={idx}
+                            name={label.k}
+                            label={label.name}
+                            type={label.type}
+                            handleInput={handleInput}
+                            value={buyer}
+                            handleBlur={handleBlur}
+                            error={error}
                         />
-                        <label htmlFor="floatingInput">Nombre y Apellido</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input
-                            name="phone"
-                            onChange={handleInput}
-                            value={buyer.phone}
-                            type="phone"
-                            className="form-control"
-                            id="floatingPhone"
-                            placeholder="Password"
-                            required
-                        />
-                        <label htmlFor="floatingPhone">Teléfono</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input
-                            name="email"
-                            onChange={handleInput}
-                            value={buyer.email}
-                            type="email"
-                            className="form-control"
-                            id="floatingEmail"
-                            placeholder="Password"
-                            required
-                        />
-                        <label htmlFor="floatingEmail">Email</label>
-                    </div>
+                    ))}
                     <div className="d-flex justify-content-between">
                         <button
                             onClick={() => {
@@ -115,6 +113,13 @@ const CartForm = () => {
                             Cancelar la compra
                         </button>
                         <button
+                            disabled={
+                                !(
+                                    buyer.name !== "" &&
+                                    buyer.email !== "" &&
+                                    buyer.phone !== ""
+                                )
+                            }
                             onClick={handleSubmit}
                             className="btn btn-success"
                         >
