@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Item = ({ id, nombre, descripcion, precio, imagen }) => {
+const Item = ({ id, nombre, precio, imagen }) => {
     return (
-        <div className="col p-3">
+        <div className="col p-3 animate__animated animate__fadeIn">
             <div className="card h-100 mx-3 hov">
                 <div className="card-img">
                     <img
-                        className="card-img-top p-3"
+                        className="card-img-top p-3 animate__animated animate__zoomIn"
                         src={imagen}
                         alt="{nombre}"
                     />
