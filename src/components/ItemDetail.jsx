@@ -6,6 +6,8 @@ const ItemDetail = ({ producto }) => {
     const onAdd = (cantidad) => {
         addItem(producto, cantidad);
     };
+
+    let idM = `#${producto.id}`;
     return (
         <div className="container">
             <div className="row mt-3">
@@ -19,11 +21,13 @@ const ItemDetail = ({ producto }) => {
                         <div className="card-body row">
                             <div className="col-md-6">
                                 <div className="card-img">
-                                    <img
-                                        className="card-img-top p-3"
-                                        src={producto.image}
-                                        alt="{nombre}"
-                                    />
+                                    <a data-bs-toggle="modal" href={idM}>
+                                        <img
+                                            className="card-img-top p-3"
+                                            src={producto.image}
+                                            alt="{nombre}"
+                                        />
+                                    </a>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -39,12 +43,40 @@ const ItemDetail = ({ producto }) => {
                                     <div className="col-md-6 d-flex flex-column">
                                         <ItemCount
                                             id={producto.id}
-                                            stock={5}
+                                            stock={producto.stock}
                                             initial={1}
                                             onAdd={onAdd}
                                         />
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    className="modal fade"
+                    id={producto.id}
+                    aria-hidden="true"
+                    tabIndex="-1"
+                >
+                    <div className="modal-dialog modal-fullscreen modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">
+                                    {producto.nombre}
+                                </h5>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div className="modal-body">
+                                <img
+                                    src={producto.image}
+                                    alt={producto.nombre}
+                                />
                             </div>
                         </div>
                     </div>
