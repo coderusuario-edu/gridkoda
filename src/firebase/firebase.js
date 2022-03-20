@@ -1,17 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-    collection,
-    getDocs,
-    getDoc,
-    doc,
-    query,
-    where,
-    getFirestore,
-    CollectionReference,
-    addDoc,
-} from "firebase/firestore";
-import { Navigate, useNavigate } from "react-router-dom";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,57 +18,3 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
-
-export async function getAllProducts() {
-    try {
-        const data = collection(db, "productos");
-        let productCollection = await getDocs(data);
-        const result = productCollection.docs.map((doc) => {
-            return { id: doc.id, ...doc.data() };
-        });
-        return result;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export async function getProduct(prodId) {
-    try {
-        const data = collection(db, "productos");
-        const theProd = doc(data, prodId);
-        let resultDoc = await getDoc(theProd);
-        return { id: resultDoc.id, ...resultDoc.data() };
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export async function getProductCategory(categoryId) {
-    try {
-        const data = collection(db, "productos");
-
-        let que = query(data, where("categoryId", "==", categoryId));
-        if (categoryId === "sale") {
-            que = query(data, where("sale", "==", true));
-        }
-
-        const categoryProducts = await getDocs(que);
-
-        const result = categoryProducts.docs.map((doc) => {
-            return { id: doc.id, ...doc.data() };
-        });
-        return result;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export const generarOrder = async (orderData) => {
-    try {
-        const colec = collection(db, "orden");
-        const order = await addDoc(colec, orderData);
-        return order.id;
-    } catch (error) {
-        console.error("Error en la escritura de datos");
-    }
-};

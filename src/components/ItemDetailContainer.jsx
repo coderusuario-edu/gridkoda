@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import Loader from "./Loader";
-import { getProduct } from "../firebase/firebase";
+import useFireStore from "../hooks/useFireStore";
 
 const ItemDetailContainer = () => {
     const [detalle, setDetalle] = useState(null);
     const [loaded, setLoaded] = useState(false);
+
+    const { getProduct } = useFireStore();
+
     const itemPedido = useParams().itemId;
     useEffect(() => {
         let product = getProduct(itemPedido);
